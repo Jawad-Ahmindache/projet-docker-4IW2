@@ -41,7 +41,7 @@ RUN apk add bash wget git
 RUN git config --global user.email "symfony@example.com" && git config --global user.name "Name"
 RUN wget https://get.symfony.com/cli/installer -O - | bash \
     && mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
-COPY ./init.sh /init.sh
+COPY ./.docker/symfony/init.sh /init.sh
 RUN chmod +x /init.sh
 
 EXPOSE 8000
