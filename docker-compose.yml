@@ -3,12 +3,11 @@ version: '3.8'
 services:
   symfony_app:
     build:
-      context: .
       dockerfile: .docker/symfony/Dockerfile
     volumes:
-      - .:/var/www/html
+      - .:/app
     ports:
-      - "8000:9000"
+      - "8000:8000"
     environment:
       DATABASE_URL: "postgres://user:password@database:5432/symfony"
     networks:
