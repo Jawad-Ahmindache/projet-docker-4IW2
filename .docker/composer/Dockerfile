@@ -40,5 +40,5 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 
 RUN php composer-setup.php && mv ./composer.phar /usr/local/bin/composer
 WORKDIR /app
-
-CMD ["composer", "install", "&&", "composer", "dump-autoload"]
+COPY ./.docker/composer/init.sh /init.sh
+CMD ["/init.sh"]
