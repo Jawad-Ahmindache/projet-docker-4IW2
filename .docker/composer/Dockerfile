@@ -32,6 +32,8 @@ RUN apk --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/edge/main 
     php83-sodium \
     php83-tokenizer \
     php83-pecl-apcu \
+    php83-pdo \
+    php83-pdo_pgsql \
     && ln -sf /usr/bin/php83 /usr/bin/php
 
 WORKDIR /var

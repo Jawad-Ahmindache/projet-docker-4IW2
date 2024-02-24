@@ -35,6 +35,8 @@ RUN apk --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/edge/main 
     php83-tokenizer \
     # Iconv Fix
     php83-pecl-apcu \
+    php83-pdo \
+    php83-pdo_pgsql \
     && ln -sf /usr/bin/php83 /usr/bin/php
 
 RUN apk add bash wget git
