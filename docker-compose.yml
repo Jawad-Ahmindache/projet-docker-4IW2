@@ -4,20 +4,13 @@ services:
   symfony_app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: .docker/symfony/Dockerfile
     volumes:
       - .:/var/www/html
     ports:
       - "8000:9000"
     environment:
       DATABASE_URL: "postgres://user:password@database:5432/symfony"
-    networks:
-      - symfony_network
-
-  adminer:
-    image: adminer
-    ports:
-      - "8080:8080"
     networks:
       - symfony_network
 
