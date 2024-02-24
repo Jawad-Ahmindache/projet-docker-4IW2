@@ -6,7 +6,7 @@ RUN apk update && \
 
 RUN mkdir -p /docker-entrypoint-initdb.d
 
-COPY ./init.sql /docker-entrypoint-initdb.d/
+COPY ./.docker/postgres/init.sql /docker-entrypoint-initdb.d/
 
 WORKDIR /var/lib/postgresql/data
 

@@ -10,6 +10,8 @@ services:
       - "8000:8000"
     environment:
       DATABASE_URL: "postgres://user:password@database:5432/symfony"
+    depends_on:
+      - database
     networks:
       - symfony_network
   composer:
@@ -17,6 +19,28 @@ services:
       dockerfile: .docker/composer/Dockerfile
     volumes:
       - ./src:/app
+    depends_on:
+      - database
+    networks:
+      - symfony_network
+  database:
+    build: 
+      dockerfile: .docker/postgres/Dockerfile
+    environment:
+      POSTGRES_DB: symfony
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - /var/lib/postgresql/data
+    networks:
+      - symfony_network
+  adminer:
+    build: 
+      dockerfile: .docker/adminer/Dockerfile
+    ports:
+      - "8080:8080"
     networks:
       - symfony_network
 

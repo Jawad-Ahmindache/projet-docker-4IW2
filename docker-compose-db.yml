@@ -3,7 +3,7 @@ version: '3.8'
 services:
   database:
     image: postgres:alpine
-    dockerfile: Dockerfile
+    dockerfile: .docker/postgres/Dockerfile
     environment:
       POSTGRES_DB: symfony
       POSTGRES_USER: user
@@ -12,6 +12,13 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - symfony_network
+  adminer:
+    image: adminer
+    dockerfile: .docker/adminer/Dockerfile
+    ports:
+      - "8080:8080"
     networks:
       - symfony_network
 
