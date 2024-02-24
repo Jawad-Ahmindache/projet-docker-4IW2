@@ -12,6 +12,13 @@ services:
       DATABASE_URL: "postgres://user:password@database:5432/symfony"
     networks:
       - symfony_network
+  composer:
+    build:
+      dockerfile: .docker/composer/Dockerfile
+    volumes:
+      - ./src:/app
+    networks:
+      - symfony_network
 
 networks:
   symfony_network:
