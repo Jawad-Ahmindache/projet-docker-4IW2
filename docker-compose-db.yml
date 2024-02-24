@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  database:
+    image: postgres:alpine
+    dockerfile: Dockerfile
+    environment:
+      POSTGRES_DB: symfony
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - symfony_network
+
+volumes:
+  postgres_data:
+
+networks:
+  symfony_network:
+    external: true
