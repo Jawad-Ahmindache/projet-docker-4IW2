@@ -5,7 +5,7 @@ services:
     build:
       dockerfile: .docker/symfony/Dockerfile
     volumes:
-      - .:/app
+      - "./src/:/app"
     ports:
       - "8000:8000"
     environment:
@@ -24,20 +24,17 @@ services:
     networks:
       - symfony_network
   database:
-    build: 
-      dockerfile: .docker/postgres/Dockerfile
+    image: postgres:latest
     environment:
       POSTGRES_DB: symfony
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
     ports:
       - "5432:5432"
-    volumes:
-      - /var/lib/postgresql/data
     networks:
       - symfony_network
   adminer:
-    build: 
+    build:
       dockerfile: .docker/adminer/Dockerfile
     ports:
       - "8080:8080"
@@ -46,4 +43,7 @@ services:
 
 networks:
   symfony_network:
-    external: true
+
+volumes:
+  postgres_data:
+    driver: local
